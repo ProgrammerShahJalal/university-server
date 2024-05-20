@@ -35,6 +35,7 @@ const localGuardianSchema = z.object({
 // Student schema
 const studentSchema = z.object({
   id: z.string(),
+  password: z.string().max(20),
   name: userNameSchema,
   gender: z.enum(['male', 'female', 'other'], {
     errorMap: () => ({ message: 'Gender must be male, female, or other' }),
@@ -58,6 +59,7 @@ const studentSchema = z.object({
       errorMap: () => ({ message: 'Status must be either active or blocked' }),
     })
     .default('active'),
+  isDeleted: z.boolean(),
 });
 
 export default studentSchema;
